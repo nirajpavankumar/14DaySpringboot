@@ -1,0 +1,45 @@
+
+### What the Method Does
+
+The `getBookById` method is designed to find a book with a specific ID from a list of books.
+
+### Breaking It Down
+
+#### Method Signature
+
+```java
+public Optional<Book> getBookById(Long id)
+```
+
+- `public`: This means that the method can be accessed from outside the class.
+- `Optional<Book>`: The method returns an `Optional<Book>`. This means that it may or may not return a `Book` object. If the book is found, it returns the book. If not, it returns an empty result.
+- `getBookById(Long id)`: The method's name is `getBookById`, and it takes one parameter: `Long id`. This is the ID of the book we are looking for.
+
+#### Method Body
+
+```java
+return books.stream().filter(book -> book.getId().equals(id)).findFirst();
+```
+
+- `books.stream()`: This converts the list of books into a stream. Think of a stream as a way to look at each item in the list one by one.
+- `filter(book -> book.getId().equals(id))`: This part filters the stream. It checks each book in the stream to see if its ID matches the ID we are looking for.
+  - `book -> book.getId().equals(id)`: This is a lambda expression. It's like saying, "For each book, check if the book's ID is equal to the ID we are looking for."
+- `findFirst()`: This method returns the first book that matches the filter criteria. If no books match, it returns an empty `Optional`.
+
+### Example
+
+Imagine you have a list of books:
+
+- Book 1: ID = 1, Title = "Spring Boot in Action"
+- Book 2: ID = 2, Title = "Spring Boot in Practice"
+
+If you call `getBookById(2L)`, the method will:
+1. Convert the list of books into a stream.
+2. Filter the stream to find books with ID 2.
+3. Find the first book that matches the ID (in this case, Book 2).
+
+If the book is found, it returns an `Optional` containing Book 2. If not, it returns an empty `Optional`.
+
+### Putting It All Together
+
+So, in simple terms, the `getBookById` method takes an ID, looks through the list of books to find a book with that ID, and returns it if found. If no book with the given ID is found, it returns an empty result.
