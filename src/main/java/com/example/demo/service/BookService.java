@@ -1,44 +1,45 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Book;
+import com.example.demo.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService {
-    private final List<Book> books = new ArrayList<>();
 
-    public List<Book> getAllBooks() {
-        return books;
+    private final BookRepository bookRepository;
+
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
-    public Optional<Book> getBookById(Long id) {
-        return books.stream().filter(book -> book.getId().equals(id)).findFirst();
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
     public Book createBook(Book book) {
-        book.setId((long) (books.size() + 1));
-        books.add(book);
-        return book;
+        return bookRepository.save(book);
     }
 
     public Book updateBook(Long id, Book book) {
-        Optional<Book> existingBookOpt = getBookById(id);
-        if (existingBookOpt.isPresent()) {
-            Book existingBook = existingBookOpt.get();
-            existingBook.setTitle(book.getTitle());
-            existingBook.setAuthor(book.getAuthor());
-            existingBook.setIsbn(book.getIsbn());
-            existingBook.setPublishedDate(book.getPublishedDate());
-            return existingBook;
-        }
-        return null;
+        Book existingBook = getBookById(id);
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setIsbn(book.getIsbn());
+        existingBook.setPublishedDate(book.getPublishedDate());
+        return bookRepository.save(existingBook);
     }
 
-    public boolean deleteBook(Long id) {
-        return books.removeIf(book -> book.getId().equals(id));
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
     }
 }
