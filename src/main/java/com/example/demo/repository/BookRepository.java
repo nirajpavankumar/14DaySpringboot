@@ -1,8 +1,9 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-public interface BookRepository extends MongoRepository<Book, Long> {
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {
 }

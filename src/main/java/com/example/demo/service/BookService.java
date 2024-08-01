@@ -30,14 +30,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public Book updateBook(Long id, Book book) {
-        Book existingBook = getBookById(id);
-        existingBook.setTitle(book.getTitle());
-        existingBook.setAuthor(book.getAuthor());
-        existingBook.setIsbn(book.getIsbn());
-        existingBook.setPublishedDate(book.getPublishedDate());
-        return bookRepository.save(existingBook);
-    }
+    
 
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);

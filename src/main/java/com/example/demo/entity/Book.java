@@ -1,26 +1,31 @@
 package com.example.demo.entity;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-@Document(collection = "Books")
+@Entity
 public class Book {
     @Id
-    private String id; // Use String instead of Long
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Title is mandatory")
     private String title;
+
+    @NotBlank(message = "Author is mandatory")
     private String author;
+
+    @Pattern(regexp = "\\d{3}-\\d{10}", message = "ISBN must follow the pattern XXX-XXXXXXXXXX")
     private String isbn;
+
+    @PastOrPresent(message = "Published date cannot be in the future")
     private LocalDate publishedDate;
 
-    // Getters and setters
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,4 +60,6 @@ public class Book {
     public void setPublishedDate(LocalDate publishedDate) {
         this.publishedDate = publishedDate;
     }
+
+   
 }
