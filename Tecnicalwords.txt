@@ -1,0 +1,12 @@
+Framework --> Springboot 
+Annotations -- Restcontroller, Service, Autowire, Qualifier, Getmapping, RequestMapping, Request Param, Id, Document, Generated value.
+Controller --> Path variable, Request body, Getmapping, Putmapping, JSON object, DI
+Service --> DI, Business Logic, 
+Entity/Model --> DB schema, 
+Repository --> MongoDb, SQL, H2
+Database  --> MongoDb, H2, MySQL.  (Assignment..Monday)
+Dependency Injection --> Springboot manages Dependency Injection.. Example.
+application.properties -->
+
+
+
