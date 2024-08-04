@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+combine.py
+combined_java_files.txt
+
+
