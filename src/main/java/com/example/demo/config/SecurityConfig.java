@@ -16,6 +16,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .csrf().disable()  // Disable CSRF protection
             .authorizeRequests()
             .antMatchers("/books/public/view").permitAll()  // Allow access to /books/public/view without authentication
             .antMatchers("/books/**").authenticated()  // Secure all other /books endpoints
