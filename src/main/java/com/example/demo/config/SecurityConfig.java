@@ -17,7 +17,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/books/**").authenticated()  // Secure all /books endpoints
+            .antMatchers("/books/public/view").permitAll()  // Allow access to /books/public/view without authentication
+            .antMatchers("/books/**").authenticated()  // Secure all other /books endpoints
             .anyRequest().permitAll()  // Allow all other endpoints
             .and()
             .httpBasic();  // Enable Basic Authentication

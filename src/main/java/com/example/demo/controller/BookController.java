@@ -38,11 +38,14 @@ public class BookController {
         return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
 
-
-    
-
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
+    }
+
+    // New public endpoint
+    @GetMapping("/public/view")
+    public List<Book> viewBooks() {
+        return bookService.getAllBooks();
     }
 }
