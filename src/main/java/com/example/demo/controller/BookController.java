@@ -32,7 +32,7 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @PostMapping
+    @PostMapping("/books")
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         Book createdBook = bookService.createBook(book);
         return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
