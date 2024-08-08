@@ -71,7 +71,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
-        
 
         <!-- Spring Boot Test Dependency -->
         <dependency>
@@ -85,7 +84,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
