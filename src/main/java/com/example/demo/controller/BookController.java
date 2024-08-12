@@ -24,7 +24,10 @@ public class BookController {
 
     @GetMapping
     public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+        System.out.println("getAllBooks method called");
+        List<Book> books = bookService.getAllBooks();
+        System.out.println("Number of books retrieved: " + books.size());
+        return books;
     }
 
     @GetMapping("/{id}")
