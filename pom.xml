@@ -20,6 +20,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+    <groupId>uk.org.lidalia</groupId>
+    <artifactId>slf4j-test</artifactId>
+    <version>1.2.0</version>
+    <scope>test</scope>
+</dependency>
+
 
         <!-- H2 Database Dependency -->
         <dependency>
